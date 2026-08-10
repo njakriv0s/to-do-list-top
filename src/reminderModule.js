@@ -1,5 +1,5 @@
-function Reminder(name, description, dueDate, complete ) {
-    const reminder = {name, description, dueDate, complete}
+function Reminder(name, description, dueDate, complete, flagged ) {
+    const reminder = {name, description, dueDate, complete, flagged}
     return reminder;
 }
 
