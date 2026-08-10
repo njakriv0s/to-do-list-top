@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playwrite+GB+J+Guides:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+  --color-yellow: #FFD400;
+  --color-orange: #FF7A00;
+  --color-red: #E63946;
+  --color-blue: #0080FF;
+  --color-purple: #7B2FF7;
+  --color-green: #2ECC71;
+  --color-grey: #F0F0F0;
+}
+
 *,
 *::before,
 *::after {
@@ -6,6 +19,7 @@
 
 * {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -20,7 +34,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: red;
+  background: var(--color-grey);
   height: 100%;
   width: 100%;
 }
@@ -44,9 +58,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: yellow;
   height: 100%;
   width: 80%;
+  background: yellow;
+}
+
+.main-wrapper {
+  height: 95%;
+  width: 100%;
 }
 
 /* MENU SECTION */
@@ -60,10 +79,27 @@ body {
   padding: 1em;
 }
 
+.user-account {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 1em;
+}
+
+.menu-projects {
+  height: 350px;
+}
+
 .menu-reminder-list,
 .menu-projects-list {
   margin-top: 1em;
   padding-left: 0;
+}
+
+.menu-heading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  font-weight: 800;
 }
 
 .menu-item {
@@ -74,6 +110,13 @@ li {
   display: flex;
   justify-content: baseline;
   align-items: center;
+  margin-top: 0.5em;
+}
+
+li>span {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
 }
 
 .menu-icon {
@@ -82,8 +125,98 @@ li {
   margin-right: 0.5em;
 }
 
+#user-icon {
+  height: 30px;
+  width: auto;
+  margin-right: 0.5em;
+}
+
+#button-all:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-blue);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+#button-today:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-red);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+#button-weekly:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-orange);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+#button-monthly:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-yellow);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+#button-flagged:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-purple);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+#button-complete:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-green);
+  text-decoration-thickness: 0.2em;
+  cursor: pointer;
+}
+
+.user-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-account-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-account-menu>span {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+#logout-button {
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+/* MENU ICONS */
 #icon-all {
-  fill: red;
+  fill: var(--color-blue);
+}
+
+#icon-today {
+  fill: var(--color-red);
+}
+
+#icon-weekly {
+  fill: var(--color-orange);
+}
+
+#icon-monthly {
+  fill: var(--color-yellow);
+}
+
+#icon-flagged {
+  fill: var(--color-purple);
+}
+
+#icon-complete {
+  fill: var(--color-green);
 }
 
 
