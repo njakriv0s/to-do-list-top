@@ -1,0 +1,59 @@
+.grid-container {
+    display: grid;
+    justify-content: center;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 3fr);
+    gap: 20px;
+}
+
+.grid-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    height: 300px;
+    padding: 0.3em 1.2em;
+    border-radius: 15px;
+}
+
+.grid-card-content {
+    width: 100%;
+    height: 100%;
+    margin: 1em 2em;
+    /* background: black; */
+}
+
+.grid-card.today {
+    background: var(--color-red);
+}
+
+.grid-card.weekly {
+    background: var(--color-orange);
+}
+
+.grid-card.monthly {
+    background: var(--color-yellow);
+}
+
+.grid-card-content-box {
+    display: flex;
+    height: 1.8em;
+    background: white;
+    border-radius: 5px;
+    justify-content: baseline;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.grid-card-content-box.description {
+    min-height: 1.8em;
+    height: auto;
+}
+
+.card-text {
+    font-weight: 500;
+    padding: 0.5em;
+}
+
+
