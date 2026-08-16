@@ -1,9 +1,10 @@
 .grid-container {
     display: grid;
     justify-content: center;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(2, 3fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    flex: 1;
+    min-width: 0;
 }
 
 .grid-card {
@@ -11,16 +12,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 480px;
+    width: 250px;
+    /* width: 480px; */
     height: 300px;
     padding: 0.3em 1.2em;
     border-radius: 15px;
+    box-shadow: 10px  10px 20px rgb(181, 179, 179);
 }
 
 .grid-card-content {
     width: 100%;
     height: 100%;
     margin: 1em 2em;
+    color: black;
     /* background: black; */
 }
 
@@ -36,14 +40,31 @@
     background: var(--color-yellow);
 }
 
+.grid-card.complete {
+    background: var(--color-green);
+}
+
 .grid-card-content-box {
     display: flex;
     height: 1.8em;
-    background: white;
+    /* background: white; */
     border-radius: 5px;
     justify-content: baseline;
     align-items: center;
     margin: 1em 0;
+}
+
+.grid-card-content-box.today {
+    background: var(--color-red-light);
+}
+.grid-card-content-box.weekly {
+    background: var(--color-orange-light);
+}
+.grid-card-content-box.monthly {
+    background: var(--color-yellow-light);
+}
+.grid-card-content-box.complete {
+    background: var(--color-green-light);
 }
 
 .grid-card-content-box.description {
@@ -55,5 +76,27 @@
     font-weight: 500;
     padding: 0.5em;
 }
+
+.complete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+}
+
+.complete-button:hover {
+    cursor: pointer;
+}
+
+.complete-svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--color-green);
+}
+
+
 
 

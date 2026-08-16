@@ -13,4 +13,9 @@ function getNumberOfDays(start, end) {
     return diffInDays
 }
 
-export { getNumberOfDays };
+function formatDate(date) {
+    const formattedDate = date.toLocaleDateString('en-GB');
+    return formattedDate;
+}
+
+export { getNumberOfDays, formatDate };

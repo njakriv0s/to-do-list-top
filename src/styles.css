@@ -3,11 +3,15 @@
 
 :root {
   --color-yellow: #FFD400;
+  --color-yellow-light: #FFE666;
   --color-orange: #FF7A00;
+  --color-orange-light: #FFB066;
   --color-red: #E63946;
+  --color-red-light: #F08A93;
   --color-blue: #0080FF;
   --color-purple: #7B2FF7;
   --color-green: #2ECC71;
+  --color-green-light: #8FE3B2;
   --color-grey: #F0F0F0;
 }
 
@@ -51,6 +55,7 @@ body {
   max-width: 230px;
   margin: 1em;
   border-radius: 25px;
+  box-shadow: 10px  10px 20px rgb(181, 179, 179);
 }
 
 .main {
