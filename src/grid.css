@@ -18,6 +18,17 @@
     padding: 0.3em 1.2em;
     border-radius: 15px;
     box-shadow: 10px  10px 20px rgb(181, 179, 179);
+    transition: 0.7s;
+}
+
+.grid-card.flag {
+    border: var(--color-purple) 10px solid;
+    transition: 0.7s;
+    /* font-size: smaller; */
+}
+
+.grid-card:hover {
+    transform: scale(1.05);
 }
 
 .grid-card-content {
@@ -52,6 +63,7 @@
     justify-content: baseline;
     align-items: center;
     margin: 1em 0;
+    transition: 0.7s;
 }
 
 .grid-card-content-box.today {
@@ -77,6 +89,18 @@
     padding: 0.5em;
 }
 
+/* CARD ICONS */
+
+.card-icon {
+    margin: 4px;
+    width: 20px;
+    height: 20px;
+}
+
+.card-icon:hover {
+    cursor: pointer;
+}
+
 .complete-button {
     display: flex;
     align-items: center;
@@ -92,9 +116,34 @@
 }
 
 .complete-svg {
+    fill: var(--color-green);
     width: 20px;
     height: 20px;
-    fill: var(--color-green);
+}
+
+.flag-button {
+    background-color: white;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.flag-button.active {
+    background-color: var(--color-purple);
+}
+
+.delete-button,
+.edit-button {
+    background-color: white;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
 }
 
 

@@ -1,7 +1,11 @@
-import { gridContainer, reminderArr } from "./index.js";
+import { gridContainer, reminderArr, sortArr } from "./index.js";
 import { currentDate } from "./currentDate.js";
 import { getNumberOfDays, formatDate } from "./differenceInDays.js";
 import completeIcon from "./icons/complete-2.png";
+import flagIcon from "./icons/flag.svg";
+import deleteIcon from "./icons/delete.svg";
+import editIcon from "./icons/edit.svg";
+
 
 function changeClasses(element) {
     element.classList.remove("today")
@@ -11,6 +15,9 @@ function changeClasses(element) {
 }
 
 function createGrid() {
+
+    sortArr(reminderArr, "dueDate");
+
     reminderArr.forEach((e) => {
 
         const gridCard = document.createElement("div");
@@ -62,14 +69,50 @@ function createGrid() {
         gridCardColor(e, currentDate(), gridCardContentBoxButtons)
         gridCardContent.appendChild(gridCardContentBoxButtons);
 
+        const gridCardContentDeleteButton = document.createElement("div")
+        gridCardContentDeleteButton.classList.add("delete-button")
+        gridCardContentDeleteButton.classList.add("card-icon")
+        gridCardContentDeleteButton.style.webkitMaskImage = `url(${deleteIcon})`
+        gridCardContentDeleteButton.style.maskImage = `url(${deleteIcon})`
+        gridCardContentBoxButtons.appendChild(gridCardContentDeleteButton);
+
+        gridCardContentDeleteButton.addEventListener("click", (e) => {
+            deleteCard(reminderArr, e, gridCard);
+            console.log(reminderArr);
+        })
+
+          const gridCardContentEditButton = document.createElement("div")
+        gridCardContentEditButton.classList.add("edit-button")
+        gridCardContentEditButton.classList.add("card-icon")
+        gridCardContentEditButton.style.webkitMaskImage = `url(${editIcon})`
+        gridCardContentEditButton.style.maskImage = `url(${editIcon})`
+        gridCardContentBoxButtons.appendChild(gridCardContentEditButton);
+
         const gridCardContentCompleteButton = document.createElement("div")
         gridCardContentCompleteButton.classList.add("complete-button")
+        gridCardContentCompleteButton.classList.add("card-icon")
         gridCardContentBoxButtons.appendChild(gridCardContentCompleteButton);
 
         const gridCardCompleteButtonActive = document.createElement("img")
         gridCardCompleteButtonActive.classList.add("complete-svg")
         gridCardCompleteButtonActive.src = completeIcon;
 
+        const gridCardContentFlagButton = document.createElement("div")
+        gridCardContentFlagButton.classList.add("flag-button")
+        gridCardContentFlagButton.classList.add("card-icon")
+        gridCardContentFlagButton.style.webkitMaskImage = `url(${flagIcon})`
+        gridCardContentFlagButton.style.maskImage = `url(${flagIcon})`
+
+        if (e.flagged === true) {
+            gridCardContentFlagButton.classList.add("active")
+            gridCard.classList.add("flag")
+        }
+
+        gridCardContentFlagButton.addEventListener("click", (element) => {
+            flag(gridCardContentFlagButton, gridCard);
+        })
+
+        gridCardContentBoxButtons.appendChild(gridCardContentFlagButton);
         gridCardContentCompleteButton.addEventListener("click", (event) => {
             
             if (gridCard.classList.contains("complete")) {
@@ -90,15 +133,7 @@ function createGrid() {
 
                 gridCardCompleteButtonActive.remove();
 
-                return;
-
-
-                
-                
-
-
-                
-
+                return ;
             }
 
             if (!gridCardContentCompleteButton.classList.contains("active")) {
@@ -116,11 +151,7 @@ function createGrid() {
 
             }
             
-            
-
         })
-
-
 
     })
 }
@@ -138,5 +169,21 @@ function gridCardColor(element, dateToday, elementDiv) {
     }
 }
 
+function flag(element, element2) {
+    if (element.classList.contains("active")) {
+        element.classList.remove("active")
+        element2.classList.remove("flag")
+    }
+    else if (!element.classList.contains("active")) {
+        element.classList.add("active")
+        element2.classList.add("flag")
+    }
+}
+
+function deleteCard(array, element, cardElement) {
+    const item = array.indexOf(element);
+    array.splice(item, 1);
+    cardElement.remove()
+};
 
 export { createGrid, gridCardColor };

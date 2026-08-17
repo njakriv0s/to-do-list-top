@@ -26,6 +26,13 @@ const gridContainer = document.querySelector(".grid-container")
 
 
 const reminderArr = [];
+console.log(reminderArr);
+
+function sortArr(array,key) {
+    array.sort((a, b) => a[key] - b[key])
+};
+
+
 
 
 const newReminder = Reminder()
@@ -47,7 +54,7 @@ reminderArr.push(newReminder2);
 const newReminder3 = Reminder()
 newReminder3.name = "Study";
 newReminder3.description  ="Study for exam. Make sure to be ready because it is very important";
-newReminder3.dueDate = new Date(2026, 7, 18, 11, 0);
+newReminder3.dueDate = new Date(2026, 7, 20, 11, 0);
 newReminder3.complete = false;
 newReminder3.flagged = true;
 reminderArr.push(newReminder3)
@@ -61,10 +68,10 @@ newReminder4.flagged = true
 reminderArr.push(newReminder4);
 
 
-console.log(isComplete());
-console.log(isMonthly());
-console.log(isWeekly());
-console.log(isToday());
+// console.log(isComplete());
+// console.log(isMonthly());
+// console.log(isWeekly());
+// console.log(isToday());
 
 
 
@@ -73,6 +80,6 @@ AddNewReminder(addButton, reminderArr);
 
 createGrid();
 
-export {reminderArr,  addButton, modalOverlay, modal, gridContainer};
+export {reminderArr,  addButton, modalOverlay, modal, gridContainer, sortArr};
 
 
