@@ -69,6 +69,7 @@ function createGrid() {
         gridCardColor(e, currentDate(), gridCardContentBoxButtons)
         gridCardContent.appendChild(gridCardContentBoxButtons);
 
+        // DELETE ICON
         const gridCardContentDeleteButton = document.createElement("div")
         gridCardContentDeleteButton.classList.add("delete-button")
         gridCardContentDeleteButton.classList.add("card-icon")
@@ -81,13 +82,23 @@ function createGrid() {
             console.log(reminderArr);
         })
 
-          const gridCardContentEditButton = document.createElement("div")
+        // EDIT ICON
+        const gridCardContentEditButton = document.createElement("div")
         gridCardContentEditButton.classList.add("edit-button")
         gridCardContentEditButton.classList.add("card-icon")
         gridCardContentEditButton.style.webkitMaskImage = `url(${editIcon})`
         gridCardContentEditButton.style.maskImage = `url(${editIcon})`
         gridCardContentBoxButtons.appendChild(gridCardContentEditButton);
 
+
+        gridCardContentEditButton.addEventListener("click", (e) => {
+            gridCardContentTitle.remove();
+            gridCardContentDescription.remove();
+            gridCardContentDate.remove();  
+        })
+
+
+        // COMPLETE ICON
         const gridCardContentCompleteButton = document.createElement("div")
         gridCardContentCompleteButton.classList.add("complete-button")
         gridCardContentCompleteButton.classList.add("card-icon")
@@ -97,6 +108,34 @@ function createGrid() {
         gridCardCompleteButtonActive.classList.add("complete-svg")
         gridCardCompleteButtonActive.src = completeIcon;
 
+        if (e.complete === true) {
+            gridCardContentCompleteButton.classList.add("active")
+
+            changeClasses(gridCard);
+            changeClasses(gridCardContentBoxTitle);
+            changeClasses(gridCardContentBoxDescription);
+            changeClasses(gridCardContentBoxDate);
+            changeClasses(gridCardContentBoxButtons);
+
+        
+            gridCardContentCompleteButton.appendChild(gridCardCompleteButtonActive);
+        }
+
+        gridCardContentCompleteButton.addEventListener("click", (event) => {
+            
+            completeCard(e, 
+                gridCard, 
+                gridCardContentBoxTitle, 
+                gridCardContentBoxDescription, 
+                gridCardContentBoxDate, 
+                gridCardContentBoxButtons,
+                gridCardContentCompleteButton, 
+                gridCardCompleteButtonActive
+            )
+            
+        })
+
+        // FLAG ICON
         const gridCardContentFlagButton = document.createElement("div")
         gridCardContentFlagButton.classList.add("flag-button")
         gridCardContentFlagButton.classList.add("card-icon")
@@ -109,49 +148,12 @@ function createGrid() {
         }
 
         gridCardContentFlagButton.addEventListener("click", (element) => {
-            flag(gridCardContentFlagButton, gridCard);
+            flag(e, gridCardContentFlagButton, gridCard);
         })
 
         gridCardContentBoxButtons.appendChild(gridCardContentFlagButton);
-        gridCardContentCompleteButton.addEventListener("click", (event) => {
-            
-            if (gridCard.classList.contains("complete")) {
 
-                gridCard.classList.remove("complete")
-                gridCardContentBoxTitle.classList.remove("complete")
-                gridCardContentBoxDescription.classList.remove("complete")
-                gridCardContentBoxDate.classList.remove("complete")
-                gridCardContentBoxButtons.classList.remove("complete")
-
-                gridCardContentCompleteButton.classList.remove("active");
-
-                gridCardColor(e, currentDate(), gridCard)
-                gridCardColor(e, currentDate(), gridCardContentBoxTitle)
-                gridCardColor(e, currentDate(), gridCardContentBoxDescription)
-                gridCardColor(e, currentDate(), gridCardContentBoxDate)
-                gridCardColor(e, currentDate(), gridCardContentBoxButtons)
-
-                gridCardCompleteButtonActive.remove();
-
-                return ;
-            }
-
-            if (!gridCardContentCompleteButton.classList.contains("active")) {
-
-                gridCardContentCompleteButton.classList.add("active")
-
-                changeClasses(gridCard);
-                changeClasses(gridCardContentBoxTitle);
-                changeClasses(gridCardContentBoxDescription);
-                changeClasses(gridCardContentBoxDate);
-                changeClasses(gridCardContentBoxButtons);
-
-                
-                gridCardContentCompleteButton.appendChild(gridCardCompleteButtonActive);
-
-            }
-            
-        })
+        
 
     })
 }
@@ -169,14 +171,67 @@ function gridCardColor(element, dateToday, elementDiv) {
     }
 }
 
-function flag(element, element2) {
-    if (element.classList.contains("active")) {
-        element.classList.remove("active")
-        element2.classList.remove("flag")
+function completeCard(element, 
+                eCard, 
+                eCardContentBoxTitle, 
+                eCardContentBoxDescription, 
+                eCardContentBoxDate, 
+                eCardContentBoxButtons,
+                eCardContentCompleteButton,
+                eCardCompleteButtonActive) {
+
+    if (eCard.classList.contains("complete")) {
+
+        eCard.classList.remove("complete")
+        eCardContentBoxTitle.classList.remove("complete")
+        eCardContentBoxDescription.classList.remove("complete")
+        eCardContentBoxDate.classList.remove("complete")
+        eCardContentBoxButtons.classList.remove("complete")
+
+        eCardContentCompleteButton.classList.remove("active");
+
+        gridCardColor(element, currentDate(), eCard)
+        gridCardColor(element, currentDate(), eCardContentBoxTitle)
+        gridCardColor(element, currentDate(), eCardContentBoxDescription)
+        gridCardColor(element, currentDate(), eCardContentBoxDate)
+        gridCardColor(element, currentDate(), eCardContentBoxButtons)
+
+        eCardCompleteButtonActive.remove();
+        element.complete = false;
+        console.log(reminderArr);
+
+        return ;
     }
-    else if (!element.classList.contains("active")) {
-        element.classList.add("active")
-        element2.classList.add("flag")
+
+    if (!eCardContentCompleteButton.classList.contains("active")) {
+
+        eCardContentCompleteButton.classList.add("active")
+
+        changeClasses(eCard);
+        changeClasses(eCardContentBoxTitle);
+        changeClasses(eCardContentBoxDescription);
+        changeClasses(eCardContentBoxDate);
+        changeClasses(eCardContentBoxButtons);
+
+        
+        eCardContentCompleteButton.appendChild(eCardCompleteButtonActive);
+        element.complete = true;
+        console.log(reminderArr);
+
+    }
+
+};
+
+function flag(element, element2, element3) {
+    if (element2.classList.contains("active")) {
+        element2.classList.remove("active")
+        element3.classList.remove("flag")
+        element.flagged = false
+    }
+    else if (!element2.classList.contains("active")) {
+        element2.classList.add("active")
+        element3.classList.add("flag")
+        element.flagged = true
     }
 }
 
@@ -185,5 +240,7 @@ function deleteCard(array, element, cardElement) {
     array.splice(item, 1);
     cardElement.remove()
 };
+
+function editCard() {};
 
 export { createGrid, gridCardColor };

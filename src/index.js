@@ -46,7 +46,7 @@ reminderArr.push(newReminder);
 const newReminder2 = Reminder()
 newReminder2.name = "Pay Bills"
 newReminder2.description = "Pay phone and electricity to make sure that they won' cut it"
-newReminder2.dueDate = new Date(2026, 7, 17, 5, 0)
+newReminder2.dueDate = new Date(2026, 7, 18, 5, 0)
 newReminder2.complete = true;
 newReminder2.flagged = false;
 reminderArr.push(newReminder2);

@@ -19,6 +19,9 @@
     border-radius: 15px;
     box-shadow: 10px  10px 20px rgb(181, 179, 179);
     transition: 0.7s;
+    border: transparent 10px solid;
+    border-width: 0;
+
 }
 
 .grid-card.flag {
