@@ -14,8 +14,6 @@ import { createGrid, gridCardColor } from "./grid.js";
 
 const wrapper = document.querySelector(".wrapper");
 
-const monthlyButton = document.getElementById("button-monthly");
-
 
 const main = document.querySelector(".main");
 const mainWrapper = document.querySelector(".main-wrapper")
@@ -78,6 +76,6 @@ AddNewReminder(addButton, reminderArr);
 
 createGrid(reminderArr);
 
-export {reminderArr,  addButton, modalOverlay, modal, gridContainer, monthlyButton, sortArr};
+export {reminderArr,  addButton, modalOverlay, modal, gridContainer, sortArr};
 
 

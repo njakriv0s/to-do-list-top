@@ -16,7 +16,7 @@ function isComplete(arr) {
 function isFlagged(arr) {
     const flaggedArr = []
     reminderArr.forEach((rem) => {
-       if (rem.complete === true) {
+       if (rem.flagged === true) {
             flaggedArr.push(rem)
        }
     })
