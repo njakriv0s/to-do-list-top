@@ -14,11 +14,11 @@ function changeClasses(element) {
     element.classList.add("complete")
 }
 
-function createGrid() {
+function createGrid(arr) {
 
-    sortArr(reminderArr, "dueDate");
+    sortArr(arr, "dueDate");
 
-    reminderArr.forEach((e) => {
+    arr.forEach((e) => {
 
         const gridCard = document.createElement("div");
         gridCard.classList.add("grid-card");
@@ -78,8 +78,8 @@ function createGrid() {
         gridCardContentBoxButtons.appendChild(gridCardContentDeleteButton);
 
         gridCardContentDeleteButton.addEventListener("click", (e) => {
-            deleteCard(reminderArr, e, gridCard);
-            console.log(reminderArr);
+            deleteCard(arr, e, gridCard);
+            console.log(arr);
         })
 
         // EDIT ICON
@@ -90,13 +90,34 @@ function createGrid() {
         gridCardContentEditButton.style.maskImage = `url(${editIcon})`
         gridCardContentBoxButtons.appendChild(gridCardContentEditButton);
 
+        // EDIT
+        gridCardContentEditButton.addEventListener("click", (event) => {
+            
+            const {submitButton, nameInput, descriptionInput, dateInput} = editCard(e, 
+                gridCardContentTitle, 
+                gridCardContentDescription, 
+                gridCardContentDate, 
+                gridCardContentBoxButtons, 
+                gridCardContentBoxTitle, 
+                gridCardContentBoxDescription, 
+                gridCardContentBoxDate, 
+                gridCard)
 
-        gridCardContentEditButton.addEventListener("click", (e) => {
-            gridCardContentTitle.remove();
-            gridCardContentDescription.remove();
-            gridCardContentDate.remove();  
+            submitButton.addEventListener("click", (event) => {
+
+                submitEdit(e, nameInput, descriptionInput, dateInput);
+
+                // DELETE EDIT CARD HERE
+                gridContainer.innerHTML = ""
+                // createCard(e);
+                // sortArr(arr, "dueDate")
+                createGrid(arr);
+
+                console.log(arr);
+
+            })
+
         })
-
 
         // COMPLETE ICON
         const gridCardContentCompleteButton = document.createElement("div")
@@ -158,6 +179,160 @@ function createGrid() {
     })
 }
 
+function createCard(element) {
+
+    const gridCard = document.createElement("div");
+        gridCard.classList.add("grid-card");
+
+        gridCardColor(element, currentDate(), gridCard)
+
+        gridContainer.appendChild(gridCard);
+
+        const gridCardContent = document.createElement("div");
+        gridCardContent.classList.add("grid-card-content");
+        gridCard.appendChild(gridCardContent);
+
+        const gridCardContentBoxTitle = document.createElement("div")
+        gridCardContentBoxTitle.classList.add("grid-card-content-box")
+        gridCardColor(element, currentDate(), gridCardContentBoxTitle)
+        gridCardContent.appendChild(gridCardContentBoxTitle);
+
+        const gridCardContentTitle = document.createElement("span")
+        gridCardContentTitle.classList.add("card-text");
+        gridCardContentTitle.textContent = element.name;
+        gridCardContentBoxTitle.appendChild(gridCardContentTitle);
+
+        const gridCardContentBoxDescription = document.createElement("div")
+        gridCardContentBoxDescription.classList.add("grid-card-content-box")
+        gridCardContentBoxDescription.classList.add("description")
+        gridCardColor(element, currentDate(), gridCardContentBoxDescription)
+        gridCardContent.appendChild(gridCardContentBoxDescription);
+
+        const gridCardContentDescription = document.createElement("span")
+        gridCardContentDescription.classList.add("card-text");
+        gridCardContentDescription.textContent = element.description;
+        gridCardContentBoxDescription.appendChild(gridCardContentDescription);
+
+        const gridCardContentBoxDate = document.createElement("div")
+        gridCardContentBoxDate.classList.add("grid-card-content-box")
+        gridCardContentBoxDate.classList.add("description")
+        gridCardColor(element, currentDate(), gridCardContentBoxDate)
+        gridCardContent.appendChild(gridCardContentBoxDate);
+
+        const gridCardContentDate = document.createElement("span")
+        gridCardContentDate.classList.add("card-text");
+        gridCardContentDate.textContent = formatDate(element.dueDate);
+        gridCardContentBoxDate.appendChild(gridCardContentDate);
+
+        const gridCardContentBoxButtons = document.createElement("div")
+        gridCardContentBoxButtons.classList.add("grid-card-content-box")
+        gridCardContentBoxButtons.classList.add("description")
+        gridCardColor(element, currentDate(), gridCardContentBoxButtons)
+        gridCardContent.appendChild(gridCardContentBoxButtons);
+
+        // DELETE ICON
+        const gridCardContentDeleteButton = document.createElement("div")
+        gridCardContentDeleteButton.classList.add("delete-button")
+        gridCardContentDeleteButton.classList.add("card-icon")
+        gridCardContentDeleteButton.style.webkitMaskImage = `url(${deleteIcon})`
+        gridCardContentDeleteButton.style.maskImage = `url(${deleteIcon})`
+        gridCardContentBoxButtons.appendChild(gridCardContentDeleteButton);
+
+        gridCardContentDeleteButton.addEventListener("click", (e) => {
+            deleteCard(arr, e, gridCard);
+            console.log(arr);
+        })
+
+        // EDIT ICON
+        const gridCardContentEditButton = document.createElement("div")
+        gridCardContentEditButton.classList.add("edit-button")
+        gridCardContentEditButton.classList.add("card-icon")
+        gridCardContentEditButton.style.webkitMaskImage = `url(${editIcon})`
+        gridCardContentEditButton.style.maskImage = `url(${editIcon})`
+        gridCardContentBoxButtons.appendChild(gridCardContentEditButton);
+
+        // EDIT
+        gridCardContentEditButton.addEventListener("click", (event) => {
+            
+            const {submitButton, nameInput, descriptionInput, dateInput} = editCard(element, 
+                gridCardContentTitle, 
+                gridCardContentDescription, 
+                gridCardContentDate, 
+                gridCardContentBoxButtons, 
+                gridCardContentBoxTitle, 
+                gridCardContentBoxDescription, 
+                gridCardContentBoxDate, 
+                gridCard)
+
+            submitButton.addEventListener("click", (event) => {
+
+                submitEdit(element, nameInput, descriptionInput, dateInput);
+                console.log(arr);
+
+            })
+
+        })
+
+        
+
+
+        // COMPLETE ICON
+        const gridCardContentCompleteButton = document.createElement("div")
+        gridCardContentCompleteButton.classList.add("complete-button")
+        gridCardContentCompleteButton.classList.add("card-icon")
+        gridCardContentBoxButtons.appendChild(gridCardContentCompleteButton);
+
+        const gridCardCompleteButtonActive = document.createElement("img")
+        gridCardCompleteButtonActive.classList.add("complete-svg")
+        gridCardCompleteButtonActive.src = completeIcon;
+
+        if (element.complete === true) {
+            gridCardContentCompleteButton.classList.add("active")
+
+            changeClasses(gridCard);
+            changeClasses(gridCardContentBoxTitle);
+            changeClasses(gridCardContentBoxDescription);
+            changeClasses(gridCardContentBoxDate);
+            changeClasses(gridCardContentBoxButtons);
+
+        
+            gridCardContentCompleteButton.appendChild(gridCardCompleteButtonActive);
+        }
+
+        gridCardContentCompleteButton.addEventListener("click", (event) => {
+            
+            completeCard(element, 
+                gridCard, 
+                gridCardContentBoxTitle, 
+                gridCardContentBoxDescription, 
+                gridCardContentBoxDate, 
+                gridCardContentBoxButtons,
+                gridCardContentCompleteButton, 
+                gridCardCompleteButtonActive
+            )
+            
+        })
+
+        // FLAG ICON
+        const gridCardContentFlagButton = document.createElement("div")
+        gridCardContentFlagButton.classList.add("flag-button")
+        gridCardContentFlagButton.classList.add("card-icon")
+        gridCardContentFlagButton.style.webkitMaskImage = `url(${flagIcon})`
+        gridCardContentFlagButton.style.maskImage = `url(${flagIcon})`
+
+        if (element.flagged === true) {
+            gridCardContentFlagButton.classList.add("active")
+            gridCard.classList.add("flag")
+        }
+
+        gridCardContentFlagButton.addEventListener("click", (element) => {
+            flag(element, gridCardContentFlagButton, gridCard);
+        })
+
+        gridCardContentBoxButtons.appendChild(gridCardContentFlagButton);
+
+}
+
 function gridCardColor(element, dateToday, elementDiv) {
 
     if (getNumberOfDays(dateToday, element.dueDate) <=1 && getNumberOfDays(dateToday, element.dueDate) >= 0) {
@@ -198,7 +373,6 @@ function completeCard(element,
 
         eCardCompleteButtonActive.remove();
         element.complete = false;
-        console.log(reminderArr);
 
         return ;
     }
@@ -241,6 +415,57 @@ function deleteCard(array, element, cardElement) {
     cardElement.remove()
 };
 
-function editCard() {};
+function editCard(element, oldTitle,oldDesc, oldDate, oldButt, boxTitle, boxDes, boxDat, card) {
+
+    oldTitle.remove();
+    oldDesc.remove();
+    oldDate.remove();
+    oldButt.remove();
+
+    const form = document.createElement("form");
+    form.classList.add("edit-form");
+    
+    const nameInput = document.createElement("input");
+    nameInput.classList.add("form-input")
+    nameInput.type = "text";
+    nameInput.id = "name-input";
+    nameInput.name = "name";
+    nameInput.placeholder = element.name;
+    nameInput.required = true;
+    boxTitle.appendChild(nameInput);
+
+    const descriptionInput = document.createElement("input");
+    descriptionInput.classList.add("form-input")
+    descriptionInput.type = "text";
+    descriptionInput.id = "description-input";
+    descriptionInput.name = "description";
+    descriptionInput.placeholder = element.description;
+    descriptionInput.required = true;
+    boxDes.appendChild(descriptionInput);
+    
+    const dateInput = document.createElement("input");
+    dateInput.classList.add("form-input")
+    dateInput.type = "date";
+    dateInput.id = "date-input";
+    dateInput.name = "date";
+    dateInput.placeholder = element.dueDate;
+    dateInput.required = true;
+    boxDat.appendChild(dateInput);
+
+    const submitButton = document.createElement("button");
+    submitButton.type = "submit";
+    submitButton.id = "submit-button"
+    submitButton.textContent = "Save"
+    card.appendChild(submitButton);
+
+    return {submitButton, nameInput, descriptionInput, dateInput};
+
+};
+
+function submitEdit(element, nam, des, dat) {
+    element.name = nam.value;
+    element.description = des.value;
+    element.dueDate = new Date (dat.value);
+}
 
 export { createGrid, gridCardColor };

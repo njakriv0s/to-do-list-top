@@ -2,7 +2,7 @@ import { reminderArr } from "./index.js";
 import { currentDate } from "./currentDate.js";
 import { getNumberOfDays } from "./differenceInDays.js";
 
-function isComplete() {
+function isComplete(arr) {
     const completeArr = []
     reminderArr.forEach((rem) => {
        if (rem.complete === true) {
@@ -13,7 +13,7 @@ function isComplete() {
     return completeArr;
 }
 
-function isFlagged() {
+function isFlagged(arr) {
     const flaggedArr = []
     reminderArr.forEach((rem) => {
        if (rem.complete === true) {
@@ -24,7 +24,7 @@ function isFlagged() {
     return flaggedArr;
 }
 
-function isMonthly() {
+function isMonthly(arr) {
     const monthlyArr = [];
     reminderArr.forEach((rem) => {
         if (getNumberOfDays(currentDate(), rem.dueDate) < 31 && getNumberOfDays(currentDate(), rem.dueDate) > 7) {
@@ -34,7 +34,7 @@ function isMonthly() {
     return monthlyArr;
 }
 
-function isWeekly() {
+function isWeekly(arr) {
     const weeklyArr = [];
     reminderArr.forEach((rem) => {
         if (getNumberOfDays(currentDate(), rem.dueDate) <=7 && getNumberOfDays(currentDate(), rem.dueDate) > 1) {
@@ -44,7 +44,7 @@ function isWeekly() {
     return weeklyArr;
 }
 
-function isToday() {
+function isToday(arr) {
     const todayArr = [];
     reminderArr.forEach((rem) => {
         if (getNumberOfDays(currentDate(), rem.dueDate) <=1 && getNumberOfDays(currentDate(), rem.dueDate) >= 0) {

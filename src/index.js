@@ -1,6 +1,7 @@
 import "./styles.css"
 import "./modal.css"
 import "./grid.css"
+import "./menu.js"
 
 import { currentDate } from "./currentDate.js";
 import { Reminder } from "./reminderModule.js";
@@ -12,6 +13,10 @@ import { createGrid, gridCardColor } from "./grid.js";
 
 
 const wrapper = document.querySelector(".wrapper");
+
+const monthlyButton = document.getElementById("button-monthly");
+
+
 const main = document.querySelector(".main");
 const mainWrapper = document.querySelector(".main-wrapper")
 const addButton = document.getElementById("icon-add");
@@ -26,14 +31,13 @@ const gridContainer = document.querySelector(".grid-container")
 
 
 const reminderArr = [];
-console.log(reminderArr);
 
 function sortArr(array,key) {
     array.sort((a, b) => a[key] - b[key])
 };
 
 
-
+// PLACEHOLDER REMINDERS
 
 const newReminder = Reminder()
 newReminder.name = "Catch Flight";
@@ -67,19 +71,13 @@ newReminder4.complete = false
 newReminder4.flagged = true
 reminderArr.push(newReminder4);
 
-
-// console.log(isComplete());
-// console.log(isMonthly());
-// console.log(isWeekly());
-// console.log(isToday());
-
-
-
-
 AddNewReminder(addButton, reminderArr);
 
-createGrid();
 
-export {reminderArr,  addButton, modalOverlay, modal, gridContainer, sortArr};
+
+
+createGrid(reminderArr);
+
+export {reminderArr,  addButton, modalOverlay, modal, gridContainer, monthlyButton, sortArr};
 
 
