@@ -67,13 +67,14 @@ function AddNewReminder(addButton, reminderArr) {
 
         const dateInput = document.createElement("input")
         dateInput.type = "datetime-local"
+        dateInput.classList.add("add-form-input");
         // dateInput.placeholder = "Reminder Description"
         // dateInput.classList.add("add-form-input");
         dateDiv.appendChild(dateInput);
         
         
         const flaggedDiv = document.createElement("div");
-        flaggedDiv.classList.add("add-form-div");
+        flaggedDiv.id = "flagged-div";
         modal.appendChild(flaggedDiv);
 
         const flaggedLabel = document.createElement("label");
@@ -81,15 +82,11 @@ function AddNewReminder(addButton, reminderArr) {
         flaggedLabel.textContent = "Flagged";
         flaggedDiv.appendChild(flaggedLabel);
 
-        const flaggedDivInput = document.createElement("div");
-        flaggedDivInput.id = "flagged-div-input";
-        flaggedDiv.appendChild(flaggedDivInput);
-
         const flagButton = document.createElement("div")
         flagButton.id = "flag-button"
         flagButton.style.webkitMaskImage = `url(${flagIcon})`
         flagButton.style.maskImage = `url(${flagIcon})`
-        flaggedDivInput.appendChild(flagButton);
+        flaggedDiv.appendChild(flagButton);
 
         flagButton.addEventListener("click", (event) => {
             if (isFlagged === false) {
@@ -103,6 +100,8 @@ function AddNewReminder(addButton, reminderArr) {
                 console.log(isFlagged);
             }
         })
+
+        const randomID = crypto.randomUUID()
 
         
 
@@ -119,6 +118,7 @@ function AddNewReminder(addButton, reminderArr) {
             addReminder.dueDate = new Date(dateInput.value);
             addReminder.complete = isComplete;
             addReminder.flagged = isFlagged;
+            addReminder.id = createReminderID;
             reminderArr.push(addReminder);
             modalOverlay.remove();
             gridContainer.innerHTML = "";
@@ -150,6 +150,10 @@ function createModal() {
         modalOverlay.appendChild(modal);
 }
 
-function submitAdd() {};
+function createReminderID() {
+    return`rem-${crypto.randomUUID()}`;
+}
 
-export { addButton, modal, AddNewReminder }
+// function submitAdd() {};
+
+export { addButton, modal, AddNewReminder, createReminderID };

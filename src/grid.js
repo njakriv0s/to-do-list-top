@@ -456,11 +456,28 @@ function editCard(element, oldTitle,oldDesc, oldDate, oldButt, boxTitle, boxDes,
     dateInput.required = true;
     boxDat.appendChild(dateInput);
 
+    const editButtonDiv = document.createElement("div");
+    editButtonDiv.classList.add("edit-button-div")
+    card.appendChild(editButtonDiv)
+    
+    const cancelButton = document.createElement("button");
+    cancelButton.type = "submit";
+    cancelButton.id = "cancel-button"
+    cancelButton.classList.add("edit-form-button")
+    cancelButton.textContent = "Cancel"
+    editButtonDiv.appendChild(cancelButton);
+
+    cancelButton.addEventListener("click", (event) => {
+        gridContainer.innerHTML = "";
+        createGrid(reminderArr);
+    })
+
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
     submitButton.id = "submit-button"
+    submitButton.classList.add("edit-form-button")
     submitButton.textContent = "Save"
-    card.appendChild(submitButton);
+    editButtonDiv.appendChild(submitButton);
 
     return {submitButton, nameInput, descriptionInput, dateInput};
 

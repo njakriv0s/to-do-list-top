@@ -86,11 +86,12 @@
 .modal {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     max-width: 100%;
     padding: 1em;
     width: 20em;
-    height: 30em;
+    height: 25em;
     border-radius: 20px;
     border: 10px solid var(--color-grey);
     position: relative;
@@ -101,6 +102,7 @@
     display: flex;
     flex-direction: column;
     margin: 0.5em 0;
+    width: 100%;
 }
 
 .add-form-label {
@@ -109,13 +111,25 @@
     font-weight: 700;
 }
 
+.add-form-input {
+    border: 3px solid var(--color-grey);
+
+}
+
 .add-form-description {
     height: 5em;
+}
+
+#flagged-div {
+    display: flex;
+    margin: 0.5em 0;
+    width: 100%;
 }
 
 #flag-button {
     width: 20px;
     height: 20px;
+    margin: 0 1em;
     background-color: grey;
 
     -webkit-mask-repeat: no-repeat;
@@ -132,4 +146,19 @@
 
 #flag-button.active {
     background: var(--color-purple);
+}
+
+#add-submit-button {
+    background: transparent;
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 80px;
+    height: 2.5em;
+    color: black;
+    margin: 1em 0;
+}
+
+#add-submit-button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
 }

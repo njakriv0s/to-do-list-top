@@ -1,0 +1,28 @@
+.add-project-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#add-project-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+
+    background-color: var(--color-blue);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+#add-project-icon:hover {
+    cursor: pointer;
+}
+
+.add-project-input {
+    min-width: 0;
+    width: 100%;
+}
