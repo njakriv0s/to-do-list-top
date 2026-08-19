@@ -54,6 +54,10 @@
     background: var(--color-yellow);
 }
 
+.grid-card.later {
+    background: var(--color-blue);
+}
+
 .grid-card.complete {
     background: var(--color-green);
 }
@@ -78,6 +82,10 @@
 .grid-card-content-box.monthly {
     background: var(--color-yellow-light);
 }
+
+.grid-card-content-box.later {
+    background: var(--color-blue-light);
+}
 .grid-card-content-box.complete {
     background: var(--color-green-light);
 }
@@ -90,6 +98,10 @@
 .card-text {
     font-weight: 500;
     padding: 0.5em;
+}
+
+.description-input.description {
+    height: 5em;
 }
 
 /* CARD ICONS */

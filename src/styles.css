@@ -9,6 +9,7 @@
   --color-red: #E63946;
   --color-red-light: #F08A93;
   --color-blue: #0080FF;
+  --color-blue-light: #66B3FF;
   --color-purple: #7B2FF7;
   --color-green: #2ECC71;
   --color-green-light: #8FE3B2;
@@ -229,7 +230,7 @@ li>span {
   z-index: 0;
 }
 
-#icon-add {
+/* #icon-add {
   position: absolute;
   height: 30px;
   width: auto;
@@ -240,4 +241,4 @@ li>span {
 
 #icon-add:hover {
   cursor: pointer;
-}
+} */

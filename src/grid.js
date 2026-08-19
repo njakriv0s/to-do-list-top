@@ -341,8 +341,11 @@ function gridCardColor(element, dateToday, elementDiv) {
     if (getNumberOfDays(dateToday, element.dueDate) <=7 && getNumberOfDays(dateToday, element.dueDate) > 1) {
             elementDiv.classList.add("weekly");
     }
-    if (getNumberOfDays(dateToday, element.dueDate) < 31 && getNumberOfDays(dateToday, element.dueDate) > 7) {
+    if (getNumberOfDays(dateToday, element.dueDate) <= 31 && getNumberOfDays(dateToday, element.dueDate) > 7) {
             elementDiv.classList.add("monthly");
+    }
+    if (getNumberOfDays(dateToday, element.dueDate) >= 32) {
+            elementDiv.classList.add("later");
     }
 }
 
@@ -430,25 +433,26 @@ function editCard(element, oldTitle,oldDesc, oldDate, oldButt, boxTitle, boxDes,
     nameInput.type = "text";
     nameInput.id = "name-input";
     nameInput.name = "name";
-    nameInput.placeholder = element.name;
+    nameInput.value = element.name;
     nameInput.required = true;
     boxTitle.appendChild(nameInput);
 
-    const descriptionInput = document.createElement("input");
+    const descriptionInput = document.createElement("textarea");
     descriptionInput.classList.add("form-input")
-    descriptionInput.type = "text";
+    // descriptionInput.type = "text";
+    descriptionInput.maxLength = 200;
     descriptionInput.id = "description-input";
     descriptionInput.name = "description";
-    descriptionInput.placeholder = element.description;
+    descriptionInput.value = element.description;
     descriptionInput.required = true;
     boxDes.appendChild(descriptionInput);
     
     const dateInput = document.createElement("input");
     dateInput.classList.add("form-input")
-    dateInput.type = "date";
+    dateInput.type = "datetime-local";
     dateInput.id = "date-input";
     dateInput.name = "date";
-    dateInput.placeholder = element.dueDate;
+    dateInput.value = element.dueDate;
     dateInput.required = true;
     boxDat.appendChild(dateInput);
 
@@ -468,4 +472,4 @@ function submitEdit(element, nam, des, dat) {
     element.dueDate = new Date (dat.value);
 }
 
-export { createGrid, gridCardColor };
+export { createGrid, gridCardColor, gridContainer };

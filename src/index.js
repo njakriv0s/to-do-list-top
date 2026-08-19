@@ -2,27 +2,25 @@ import "./styles.css"
 import "./modal.css"
 import "./grid.css"
 import "./menu.js"
+// import "./modal.js"
 
 import { currentDate } from "./currentDate.js";
 import { Reminder } from "./reminderModule.js";
-import { AddNewReminder } from "./addNewReminder.js";
+// import { AddNewReminder } from "./addNewReminder.js";
 import { getNumberOfDays, formatDate } from "./differenceInDays.js"
 import { isComplete, isFlagged, isMonthly, isWeekly, isToday } from "./reminderFilter.js";
 import { createGrid, gridCardColor } from "./grid.js";
 
 
+import { addButton, modal, AddNewReminder } from "./modal.js"
+
 
 const wrapper = document.querySelector(".wrapper");
-
-
 const main = document.querySelector(".main");
 const mainWrapper = document.querySelector(".main-wrapper")
-const addButton = document.getElementById("icon-add");
 const modalOverlay = document.createElement("div");
-modalOverlay.classList.add(".modal-overlay")
+modalOverlay.classList.add("modal-overlay")
 mainWrapper.appendChild(modalOverlay);
-const modal = document.createElement("div");
-modal.classList.add("modal");
 const gridContainer = document.querySelector(".grid-container")
 
 
@@ -48,8 +46,8 @@ reminderArr.push(newReminder);
 const newReminder2 = Reminder()
 newReminder2.name = "Pay Bills"
 newReminder2.description = "Pay phone and electricity to make sure that they won' cut it"
-newReminder2.dueDate = new Date(2026, 7, 18, 5, 0)
-newReminder2.complete = true;
+newReminder2.dueDate = new Date(2026, 7, 21, 5, 0)
+newReminder2.complete = false;
 newReminder2.flagged = false;
 reminderArr.push(newReminder2);
 
@@ -69,6 +67,14 @@ newReminder4.complete = false
 newReminder4.flagged = true
 reminderArr.push(newReminder4);
 
+const newReminder5 = Reminder()
+newReminder5.name = "Olympiakos Match";
+newReminder5.description = "Leave early to go see the match with my son at the stadium"
+newReminder5.dueDate = new Date(2026, 10, 28, 20, 0)
+newReminder5.complete = false
+newReminder5.flagged = false
+reminderArr.push(newReminder5);
+
 AddNewReminder(addButton, reminderArr);
 
 
@@ -76,6 +82,6 @@ AddNewReminder(addButton, reminderArr);
 
 createGrid(reminderArr);
 
-export {reminderArr,  addButton, modalOverlay, modal, gridContainer, sortArr};
+export {reminderArr, modalOverlay, gridContainer, sortArr};
 
 
