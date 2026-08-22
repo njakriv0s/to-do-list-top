@@ -1,10 +1,25 @@
 import addIcon from "./icons/plus-thick.svg"
+import { gridContainer, reminderArr } from "./index.js";
+import { loadPlaceholdersProjects } from "./placeholderReminders.js";
 
 const projectArr = [];
 
-const projectMenu = document.querySelector(".menu-projects");
-const projectMenuList = document.querySelector(".menu-project-list");
+function Project(name, id, remindersID) {
+    const project = {name, id, remindersID};
+    return project;
+}
 
+function createProjectID() {
+    return`pro-${crypto.randomUUID()}`;
+}
+
+loadPlaceholdersProjects();
+
+
+const projectMenu = document.querySelector(".menu-projects");
+const projectMenuList = document.querySelector(".menu-projects-list");
+
+renderProject(projectArr);
 
 
 const addProjectDiv = document.createElement("div");
@@ -26,41 +41,39 @@ addProjectInput.maxLength = 20;
 addProjectInput.required = true;
 addProjectDiv.appendChild(addProjectInput);
 
+
 addProjectInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        addProject()
+        addNewProject(addProjectInput.value);
+        renderProject(projectArr);  
     }
 })
 
 addProjectIcon.addEventListener("click", (event) => {
-    addProject();
+    addNewProject(addProjectInput.value);
+    renderProject(projectArr);  
 })
 
-// function addProject() {
-//     if (addProjectInput.value.length >= 5) {
-//         projectArr.push(addProjectInput.value);
-        
-//         const newProject = document.createElement("li");
-//         newProject.textContent = addProjectInput.value;
-//         // projectMenuList.appendChild(newProject);
+function addNewProject(value) {
+    const newProject = Project();
+    newProject.name = value;
+    newProject.id = createProjectID();
+    newProject.remindersID = [];
+    projectArr.push(newProject);
+    addProjectInput.value = "";
+}
 
-//         addProjectInput.value = ""
-//         console.log(projectArr);
-        
-
-        
-//     }
-//     else if (addProjectInput.value.length < 5) {
-//         console.log("Project name too short.Min lenght 5 characters.")
-//     }
-// }
-
-// function appendProject(input) {
-//     const project = document.createElement("li");
-//     project.textContent = input.value;
-//     projectMenuList.appendChild(project);
-
-// }
+function renderProject(arr) {
+    projectMenuList.innerHTML = "";
+    arr.forEach((element) => {
+        const li = document.createElement("li");
+        li.textContent = element.name;
+        li.dataset.id = element.id
+        projectMenuList.appendChild(li);
+    })
+    
+    
+}
 
 
-export { projectArr };
+export { projectArr, createProjectID, Project };

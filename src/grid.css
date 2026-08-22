@@ -14,7 +14,7 @@
     align-items: center;
     width: 250px;
     /* width: 480px; */
-    height: 300px;
+    min-height: 370px;
     padding: 0.3em 1.2em;
     border-radius: 15px;
     box-shadow: 10px  10px 20px rgb(181, 179, 179);
@@ -46,20 +46,49 @@
     background: var(--color-red);
 }
 
+.grid-card.today {
+    background-image: linear-gradient(125deg, var(--color-red), var(--color-red-light));
+}
+
 .grid-card.weekly {
-    background: var(--color-orange);
+    background-image: linear-gradient(125deg, var(--color-orange), var(--color-orange-light));
 }
 
 .grid-card.monthly {
-    background: var(--color-yellow);
+    background-image: linear-gradient(125deg, var(--color-yellow), var(--color-yellow-light));
 }
 
 .grid-card.later {
-    background: var(--color-blue);
+    background-image: linear-gradient(125deg, var(--color-blue), var(--color-blue-light));
 }
 
 .grid-card.complete {
-    background: var(--color-green);
+    background-image: linear-gradient(125deg, var(--color-green), var(--color-green-light))
+}
+
+.grid-card.today:hover {
+    background-image: linear-gradient(125deg, var(--color-red), var(--color-red-light));
+    box-shadow: 10px 10px 20px var(--color-red);
+}
+
+.grid-card.weekly:hover {
+    background-image: linear-gradient(125deg, var(--color-orange), var(--color-orange-light));
+    box-shadow: 10px  10px 20px var(--color-orange);
+}
+
+.grid-card.monthly:hover {
+    background-image: linear-gradient(125deg, var(--color-yellow), var(--color-yellow-light));
+    box-shadow: 10px  10px 20px var(--color-yellow);
+}
+
+.grid-card.later:hover {
+    background-image: linear-gradient(125deg, var(--color-blue), var(--color-blue-light));
+    box-shadow: 10px  10px 20px var(--color-blue);
+}
+
+.grid-card.complete:hover {
+    background-image: linear-gradient(125deg, var(--color-green), var(--color-green-light));
+    box-shadow: 10px  10px 20px var(--color-green);
 }
 
 .grid-card-content-box {
@@ -71,6 +100,25 @@
     align-items: center;
     margin: 1em 0;
     transition: 0.7s;
+}
+
+.grid-card-project-button {
+    height: 2em;
+    /* background: white; */
+    border-radius: 5px;
+    justify-content: baseline;
+    align-items: center;
+    margin: 1em 0;
+    transition: 0.7s;
+    background: transparent;
+    border: 3px solid white;
+    color: white;
+    width: 100%;
+}
+
+.grid-card-project-button:hover {
+    cursor: pointer;
+    transform: scale(1.02);
 }
 
 .grid-card-content-box.today {
@@ -191,7 +239,47 @@
     transform: scale(1.03);
 }
 
-/* EDIT */
+/* DROPDOW */
+.dropdown {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-grey);
+    border-radius: 5px;
+    font-size: smaller;
+    padding: 5px;
+    z-index: 10;
+}
+
+.dropdown.today {
+    border: 5px solid var(--color-red-light);
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdown-item {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    /* margin: 10px 5px; */
+    font-weight: 500;
+}
+
+.dropdown-item.today {
+    display: block;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-weight: 500;
+    background: var(--color-red-light);
+    color: white;
+}
+
+
+
+
 
 
 

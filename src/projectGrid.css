@@ -1,0 +1,22 @@
+#project-button {
+    cursor: pointer;
+}
+
+.grid-project-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100% - 3em;
+    height: 200px;
+    background-color: white;
+    border: 10px solid black;
+    margin: 3em;
+}
